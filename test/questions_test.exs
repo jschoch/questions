@@ -23,5 +23,14 @@ defmodule QuestionsTest do
     age = Q.age(q,:created)
     assert age >= 5
   end
+  test "find questions older than" do
+    day = 86400000 + 1000
+    then = Timex.Date.now(:secs ) - day
+    q = Q.new(%{created: then})|> Q.create
+    list = Nag.run
+    assert list != []
+    assert list != nil
+    assert list == [q]
+  end
   
 end

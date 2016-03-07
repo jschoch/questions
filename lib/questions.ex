@@ -13,6 +13,13 @@ defmodule Q do
     q = new
     Map.merge(q,map)
   end
+  @doc """
+  create and store a new question
+  """
+  def create(q) do
+    :ets.insert(:questions,{q.id,q})
+    q
+  end
   def all do
     :ets.tab2list(:questions)
   end
